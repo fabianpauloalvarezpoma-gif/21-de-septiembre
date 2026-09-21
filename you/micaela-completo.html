@@ -1,0 +1,1479 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#2e0a1d">
+  <title>Para ti, Micaela | 21 de Septiembre</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&display=swap" rel="stylesheet">
+  <script>document.documentElement.classList.add('js');</script>
+
+  <style>
+    :root {
+      --papel: #fff4f6;
+      --papel-2: #fde3ea;
+      --rosa: #c0265f;
+      --rosa-claro: #f4b8cb;
+      --vino: #4a0e2e;
+      --vino-hondo: #2e0a1d;
+      --tinta: #3d2233;
+      --tinta-suave: #6e4d5f;
+      --serif: 'Fraunces', Georgia, 'Times New Roman', serif;
+      --mano: 'Caveat', 'Segoe Script', 'Bradley Hand', cursive;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+    body {
+      font-family: var(--serif);
+      font-optical-sizing: auto;
+      font-weight: 350;
+      font-size: 1.0625rem;
+      line-height: 1.8;
+      color: var(--tinta);
+      background: var(--papel);
+    }
+
+    [hidden] { display: none !important; }
+
+    :focus-visible { outline: 3px solid var(--rosa); outline-offset: 3px; }
+
+    .solo-lectores {
+      position: absolute; width: 1px; height: 1px; overflow: hidden;
+      clip: rect(0 0 0 0); white-space: nowrap;
+    }
+
+    /* =========================================================
+       PORTADA: EL SOBRE
+       ========================================================= */
+    .portada {
+      position: relative;
+      min-height: 100vh;
+      min-height: 100svh;
+      display: grid;
+      place-items: center;
+      padding: 6vh 20px 6vh;
+      overflow: hidden;
+      color: #ffe9ef;
+      background: radial-gradient(ellipse 80% 60% at 50% 35%, #7d1646 0%, var(--vino) 52%, var(--vino-hondo) 100%);
+    }
+
+    /* Pétalos que caen despacio: el único movimiento ambiental de la página */
+    .petalos { position: absolute; inset: 0; pointer-events: none; }
+
+    .petalo {
+      position: absolute;
+      top: 0;
+      width: var(--s);
+      height: calc(var(--s) * 1.3);
+      background: linear-gradient(135deg, #ff9dbb, #d93d72);
+      border-radius: 100% 0 100% 0;
+      opacity: 0;
+      animation: caer var(--d) linear infinite;
+    }
+
+    @keyframes caer {
+      0%   { transform: translate3d(0, -8vh, 0) rotate(0deg); opacity: 0; }
+      8%   { opacity: .7; }
+      50%  { transform: translate3d(calc(var(--x) * -.6), 52vh, 0) rotate(210deg); }
+      92%  { opacity: .5; }
+      100% { transform: translate3d(var(--x), 108vh, 0) rotate(420deg); opacity: 0; }
+    }
+
+    .portada-centro {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      justify-items: center;
+      gap: 40px;
+      padding-top: 9vh;
+      width: 100%;
+    }
+
+    /* --- El sobre --- */
+    .sobre {
+      position: relative;
+      display: block;
+      width: min(86vw, 440px);
+      aspect-ratio: 3 / 2;
+      font-family: var(--serif);
+      font-size: clamp(13px, 3.7vw, 17px);
+      color: inherit;
+      background: none;
+      border: 0;
+      padding: 0;
+      cursor: pointer;
+      perspective: 1200px;
+      filter: drop-shadow(0 26px 30px rgba(0, 0, 0, .45));
+      -webkit-tap-highlight-color: transparent;
+      transition: transform .4s ease;
+    }
+
+    .sobre:not(.abierto):hover { transform: translateY(-5px) rotate(-.6deg); }
+
+    .sobre-atras, .carta, .sobre-frente, .sobre-solapa, .sello {
+      position: absolute;
+      display: block;
+    }
+
+    .sobre-atras {
+      inset: 0;
+      border-radius: 6px;
+      background: linear-gradient(#e6a6bb, #d88aa4);
+    }
+
+    .carta {
+      left: 7%; right: 7%; top: 8%; height: 84%;
+      z-index: 2;
+      padding: 1.1em 1em 0;
+      text-align: center;
+      background: #fffaf5;
+      border-radius: 4px;
+      transition: transform .95s cubic-bezier(.3, .7, .2, 1) .45s;
+    }
+
+    .sobre.abierto .carta { transform: translateY(-60%); }
+
+    .carta-titulo {
+      display: block;
+      font-style: italic;
+      font-weight: 500;
+      font-size: 1.6em;
+      line-height: 1.2;
+      color: var(--vino);
+    }
+
+    .carta-sub {
+      display: block;
+      margin-top: .15em;
+      font-family: var(--mano);
+      font-size: 1.4em;
+      line-height: 1.2;
+      color: var(--rosa);
+    }
+
+    .sobre-frente {
+      inset: 0;
+      z-index: 3;
+      border-radius: 6px;
+      background: linear-gradient(165deg, #fadde6, #f2bccd);
+      clip-path: polygon(0 0, 50% 54%, 100% 0, 100% 100%, 0 100%);
+    }
+
+    .sobre-para {
+      position: absolute;
+      left: 0; right: 0; bottom: 14%;
+      font-family: var(--mano);
+      font-weight: 700;
+      font-size: 2.7em;
+      line-height: 1;
+      text-align: center;
+      color: #8a1c4a;
+    }
+
+    .sobre-fecha {
+      position: absolute;
+      left: 0; right: 0; bottom: 4.5%;
+      font-family: var(--mano);
+      font-size: 1.3em;
+      line-height: 1;
+      text-align: center;
+      color: var(--tinta-suave);
+    }
+
+    .sobre-solapa {
+      left: 0; top: 0; width: 100%; height: 54%;
+      z-index: 4;
+      transform-origin: top center;
+      background: linear-gradient(#f6c6d5, #eaa6bd);
+      clip-path: polygon(0 0, 100% 0, 50% 100%);
+      transition: transform .65s ease, z-index 0s .32s;
+    }
+
+    .sobre.abierto .sobre-solapa { transform: rotateX(180deg); z-index: 1; }
+
+    .sello {
+      left: 50%; top: 54%;
+      z-index: 5;
+      width: 3.3em; height: 3.3em;
+      margin: -1.65em 0 0 -1.65em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      font-size: .82em;
+      font-weight: 600;
+      letter-spacing: .02em;
+      color: #ffd3de;
+      background: radial-gradient(circle at 35% 30%, #d13a63, #a4123f 60%, #7d0c2f);
+      box-shadow: inset 0 0 0 3px rgba(255, 255, 255, .12), 0 3px 8px rgba(0, 0, 0, .35);
+      transition: transform .4s ease, opacity .4s ease;
+    }
+
+    .sobre.abierto .sello { transform: scale(1.5) rotate(20deg); opacity: 0; }
+
+    /* --- Texto bajo el sobre --- */
+    .portada-textos { display: grid; justify-items: center; text-align: center; }
+
+    .pista, .portada-post { grid-area: 1 / 1; }
+
+    .pista {
+      font-family: var(--mano);
+      font-size: 1.7rem;
+      line-height: 1.2;
+      color: #ffc9d8;
+      animation: respirar 2.4s ease-in-out infinite;
+      transition: opacity .5s ease, visibility 0s .5s;
+    }
+
+    .pista.oculta { opacity: 0; visibility: hidden; animation: none; }
+
+    @keyframes respirar { 0%, 100% { opacity: .55; } 50% { opacity: 1; } }
+
+    .portada-post {
+      display: grid;
+      justify-items: center;
+      gap: 22px;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(10px);
+      transition: opacity .9s ease, transform .9s ease, visibility 0s .9s;
+    }
+
+    .portada-post.visible {
+      opacity: 1; visibility: visible; transform: none;
+      transition-delay: 0s;
+    }
+
+    .portada-mensaje {
+      max-width: 22ch;
+      font-family: var(--mano);
+      font-size: 2rem;
+      line-height: 1.15;
+      color: #ffe9ef;
+    }
+
+    .boton {
+      display: inline-block;
+      padding: 12px 30px;
+      border-radius: 999px;
+      font-family: var(--serif);
+      font-weight: 600;
+      font-size: 1rem;
+      border: 0;
+      cursor: pointer;
+      color: var(--vino);
+      background: #ffe9ef;
+      transition: transform .2s ease, background .2s ease;
+    }
+
+    .boton:hover { transform: translateY(-2px); background: #fff; }
+
+    /* =========================================================
+       ESTRUCTURA GENERAL DE LA CARTA
+       ========================================================= */
+    .seccion {
+      --fondo: var(--papel);
+      padding: clamp(56px, 9vw, 110px) 22px;
+      scroll-margin-top: 0;
+    }
+
+    .seccion.banda { --fondo: var(--papel-2); background: var(--fondo); }
+
+    .columna { max-width: 660px; margin: 0 auto; }
+    .ancho   { max-width: 1040px; margin: 0 auto; }
+
+    h2 {
+      font-weight: 500;
+      font-size: clamp(2rem, 5.5vw, 3.1rem);
+      line-height: 1.15;
+      letter-spacing: -.01em;
+      text-align: center;
+      color: var(--vino);
+      margin-bottom: clamp(26px, 5vw, 46px);
+      text-wrap: balance;
+    }
+
+    .bajada {
+      margin-top: calc(clamp(26px, 5vw, 46px) * -.55);
+      margin-bottom: clamp(30px, 5vw, 48px);
+      text-align: center;
+      font-family: var(--mano);
+      font-size: 1.7rem;
+      line-height: 1.25;
+      color: var(--rosa);
+    }
+
+    p { text-wrap: pretty; }
+
+    /* Animación de entrada al llegar con el scroll */
+    .js .revelar {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity .9s ease, transform .9s ease;
+    }
+    .js .revelar.visible { opacity: 1; transform: none; }
+
+    /* --- Texto de carta --- */
+    .carta-texto p + p { margin-top: 1.25em; }
+
+    .capitular::first-letter {
+      float: left;
+      font-size: 3.7em;
+      line-height: .82;
+      font-weight: 500;
+      padding: .07em .1em 0 0;
+      color: var(--rosa);
+    }
+
+    .capitulo h3 {
+      font-style: italic;
+      font-weight: 500;
+      font-size: 1.6rem;
+      line-height: 1.25;
+      color: var(--rosa);
+      margin-bottom: .35em;
+    }
+
+    .capitulo + .capitulo { margin-top: 2.6em; }
+
+    /* =========================================================
+       LÍNEA DE TIEMPO
+       ========================================================= */
+    .linea {
+      position: relative;
+      display: grid;
+      gap: clamp(22px, 4vw, 40px);
+    }
+
+    .linea::before {
+      content: '';
+      position: absolute;
+      left: 50%; top: 10px; bottom: 10px;
+      width: 2px;
+      transform: translateX(-50%);
+      background: linear-gradient(var(--rosa-claro), var(--rosa) 50%, var(--rosa-claro));
+    }
+
+    .hito {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      column-gap: 64px;
+    }
+
+    .hito::before {
+      content: '';
+      position: absolute;
+      left: 50%; top: 30px;
+      width: 16px; height: 16px;
+      margin-left: -8px;
+      border-radius: 50%;
+      background: var(--rosa);
+      box-shadow: 0 0 0 5px var(--fondo), 0 0 0 7px var(--rosa-claro);
+    }
+
+    .hito-tarjeta {
+      grid-column: 1;
+      text-align: right;
+      padding: 26px 28px;
+      border-radius: 14px;
+      background: #fff;
+      box-shadow: 0 12px 28px -16px rgba(74, 14, 46, .3);
+    }
+
+    .hito:nth-child(even) .hito-tarjeta { grid-column: 2; text-align: left; }
+
+    .hito-tarjeta h3 {
+      font-weight: 500;
+      font-size: 1.4rem;
+      line-height: 1.25;
+      color: var(--vino);
+      margin-bottom: .4em;
+    }
+
+    .hito-tarjeta p { color: var(--tinta-suave); font-size: 1rem; line-height: 1.7; }
+
+    .hito-tarjeta .hito-fecha {
+      margin-top: .7em;
+      font-family: var(--mano);
+      font-size: 1.35rem;
+      line-height: 1.2;
+      color: var(--rosa);
+    }
+
+    .hito-hoy .hito-tarjeta { background: var(--rosa); }
+    .hito-hoy .hito-tarjeta h3,
+    .hito-hoy .hito-tarjeta p { color: #fff; }
+    .hito-hoy .hito-tarjeta .hito-fecha { color: #ffdbe6; }
+
+    @media (max-width: 720px) {
+      .linea::before { left: 11px; transform: none; }
+      .hito { grid-template-columns: 1fr; padding-left: 40px; }
+      .hito::before { left: 11px; }
+      .hito-tarjeta,
+      .hito:nth-child(even) .hito-tarjeta { grid-column: 1; text-align: left; padding: 22px; }
+    }
+
+    /* =========================================================
+       GALERÍA (polaroids)
+       ========================================================= */
+    .polaroids {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr));
+      gap: 36px 28px;
+      padding: 10px 0;
+    }
+
+    .polaroid {
+      padding: 12px 12px 14px;
+      background: #fff;
+      cursor: zoom-in;
+      box-shadow: 0 16px 30px -14px rgba(74, 14, 46, .4);
+      transform: rotate(var(--giro, 0deg));
+      transition: transform .35s ease;
+    }
+
+    .polaroid:nth-child(4n+1) { --giro: -2deg; }
+    .polaroid:nth-child(4n+2) { --giro: 1.5deg; }
+    .polaroid:nth-child(4n+3) { --giro: -1deg; }
+    .polaroid:nth-child(4n+4) { --giro: 2deg; }
+
+    .polaroid:hover, .polaroid:focus-visible { transform: rotate(0deg) translateY(-4px); }
+
+    .polaroid img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      background: var(--papel-2);
+    }
+
+    .polaroid figcaption {
+      min-height: 2.6rem;
+      padding-top: 8px;
+      text-align: center;
+      font-family: var(--mano);
+      font-size: 1.5rem;
+      line-height: 1.2;
+      color: var(--tinta-suave);
+    }
+
+    .visor {
+      position: fixed; inset: 0; z-index: 2000;
+      display: grid; place-items: center;
+      padding: 24px;
+      background: rgba(46, 10, 29, .93);
+      cursor: zoom-out;
+    }
+
+    .visor img {
+      max-width: 100%; max-height: 100%;
+      border-radius: 6px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, .5);
+    }
+
+    .visor button {
+      position: absolute; top: 16px; right: 18px;
+      width: 44px; height: 44px;
+      border: 0; border-radius: 50%;
+      font-size: 1.8rem; line-height: 1;
+      color: #fff; background: rgba(255, 255, 255, .15);
+      cursor: pointer;
+    }
+
+    /* =========================================================
+       POR QUÉ TÚ
+       ========================================================= */
+    .razones {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 40px 56px;
+    }
+
+    .razon { padding-top: 18px; border-top: 1px solid var(--rosa-claro); }
+
+    .razon h3 {
+      font-style: italic;
+      font-weight: 500;
+      font-size: 1.5rem;
+      line-height: 1.25;
+      color: var(--rosa);
+      margin-bottom: .3em;
+    }
+
+    .razon p { color: var(--tinta-suave); }
+
+    @media (max-width: 720px) { .razones { grid-template-columns: 1fr; gap: 30px; } }
+
+    /* =========================================================
+       TARJETAS QUE SE VOLTEAN
+       ========================================================= */
+    .tarjetas {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 270px), 1fr));
+      gap: 22px;
+    }
+
+    .flip, .sorpresa {
+      perspective: 1200px;
+      cursor: pointer;
+      border-radius: 18px;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .flip-inner {
+      display: grid;
+      transform-style: preserve-3d;
+      transition: transform .75s cubic-bezier(.4, .1, .2, 1);
+    }
+
+    .flip.activa .flip-inner { transform: rotateY(180deg); }
+
+    .cara {
+      grid-area: 1 / 1;
+      min-height: 260px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 30px 28px;
+      text-align: center;
+      border-radius: 18px;
+      outline: 1px solid rgba(255, 255, 255, .3);
+      outline-offset: -10px;
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+    }
+
+    .cara-frente { background: var(--rosa); color: #fff; }
+    .cara-atras  { background: var(--vino); color: #ffe9ef; transform: rotateY(180deg); }
+
+    .cara-icono { font-size: 2.6rem; line-height: 1; margin-bottom: 14px; }
+
+    .cara h3 { font-weight: 500; font-size: 1.45rem; line-height: 1.25; }
+
+    .cara-atras p { font-size: 1rem; line-height: 1.75; }
+
+    /* =========================================================
+       PROMESAS
+       ========================================================= */
+    .promesas {
+      padding: clamp(28px, 6vw, 56px);
+      border-radius: 24px;
+      background: var(--papel-2);
+    }
+
+    .promesas h2 { margin-bottom: 26px; }
+
+    .promesas-lista {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      column-gap: 48px;
+    }
+
+    .promesas-lista li {
+      display: flex;
+      gap: 14px;
+      padding: 16px 0;
+      border-bottom: 1px solid rgba(192, 38, 95, .22);
+    }
+
+    .promesas-lista li::before {
+      content: '♡';
+      flex: none;
+      font-size: 1.3rem;
+      line-height: 1.45;
+      color: var(--rosa);
+    }
+
+    @media (max-width: 720px) { .promesas-lista { grid-template-columns: 1fr; } }
+
+    /* =========================================================
+       SORPRESA
+       ========================================================= */
+    .sorpresa { max-width: 420px; margin: 0 auto; }
+
+    .sorpresa-inner {
+      display: grid;
+      transform-style: preserve-3d;
+      transition: transform .9s cubic-bezier(.4, .1, .2, 1);
+    }
+
+    .sorpresa.abierta .sorpresa-inner { transform: rotateX(180deg); }
+
+    .sorpresa .cara { min-height: 300px; padding: 34px 30px; border-radius: 20px; }
+
+    .sorpresa .cara-frente { background: var(--vino); }
+
+    .sorpresa .cara-atras {
+      color: var(--vino);
+      background: #fffaf5;
+      outline-color: rgba(192, 38, 95, .3);
+      transform: rotateX(180deg);
+      box-shadow: 0 16px 36px -16px rgba(74, 14, 46, .45);
+    }
+
+    .sorpresa .cara-atras p {
+      font-style: italic;
+      font-size: 1.12rem;
+      line-height: 1.8;
+    }
+
+    .corazon {
+      font-size: 4.6rem;
+      line-height: 1;
+      margin-bottom: 14px;
+      animation: latido 1.4s ease-in-out infinite;
+    }
+
+    @keyframes latido {
+      0%, 100% { transform: scale(1); }
+      20%      { transform: scale(1.16); }
+      40%      { transform: scale(1); }
+    }
+
+    .sorpresa .cara-frente p {
+      font-family: var(--mano);
+      font-size: 1.8rem;
+      line-height: 1.1;
+      color: #ffc9d8;
+    }
+
+    /* =========================================================
+       FINAL
+       ========================================================= */
+    .final {
+      padding: clamp(48px, 9vw, 96px) clamp(24px, 6vw, 64px);
+      text-align: center;
+      color: #ffe9ef;
+      border-radius: 28px;
+      background: linear-gradient(160deg, #7d1646 0%, var(--vino) 55%, var(--vino-hondo) 100%);
+      box-shadow: 0 24px 60px -24px rgba(74, 14, 46, .6);
+    }
+
+    .final h2 { color: #fff; margin-bottom: 0; }
+
+    .final p { max-width: 34em; margin: 0 auto; font-size: 1.15rem; line-height: 1.85; }
+    .final p + p { margin-top: 1.3em; }
+
+    .sep {
+      width: 56px; height: 1px;
+      margin: 34px auto;
+      border: 0;
+      background: rgba(255, 233, 239, .6);
+    }
+
+    .firma-linea { font-family: var(--mano); font-size: 2rem; line-height: 1.2; }
+
+    .firma-nombre {
+      font-family: var(--mano);
+      font-weight: 700;
+      font-size: 3.6rem;
+      line-height: 1.1;
+    }
+
+    .final .pie { margin-top: 40px; font-size: .95rem; line-height: 1.7; opacity: .8; }
+
+    .espacio-final { height: 90px; }
+
+    /* =========================================================
+       BOTÓN DE MÚSICA
+       ========================================================= */
+    .musica {
+      position: fixed;
+      right: max(18px, env(safe-area-inset-right));
+      bottom: max(18px, env(safe-area-inset-bottom));
+      z-index: 1000;
+      width: 52px; height: 52px;
+      display: grid; place-items: center;
+      border: 0; border-radius: 50%;
+      font-size: 1.5rem; line-height: 1;
+      color: #fff;
+      background: var(--rosa);
+      cursor: pointer;
+      box-shadow: 0 10px 26px -6px rgba(74, 14, 46, .65);
+      transition: transform .2s ease;
+    }
+
+    .musica:hover { transform: scale(1.07); }
+
+    .eq { display: none; align-items: flex-end; gap: 3px; height: 18px; }
+
+    .eq i {
+      display: block;
+      width: 3px; height: 100%;
+      border-radius: 2px;
+      background: #fff;
+      transform-origin: bottom;
+      animation: eq 1s ease-in-out infinite;
+    }
+    .eq i:nth-child(2) { animation-delay: .25s; }
+    .eq i:nth-child(3) { animation-delay: .5s; }
+
+    @keyframes eq { 0%, 100% { transform: scaleY(.3); } 50% { transform: scaleY(1); } }
+
+    .musica.sonando .nota { display: none; }
+    .musica.sonando .eq { display: flex; }
+
+    /* =========================================================
+       PREFERENCIAS DE MOVIMIENTO
+       ========================================================= */
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .petalos { display: none; }
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+        transition-delay: 0s !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Música de fondo: si existe musica/fondo.mp3 se usa esa canción; si no, suena una melodía suave incluida en la página -->
+  <audio id="musicaFondo" preload="auto" loop>
+    <source src="musica/fondo.mp3" type="audio/mpeg">
+    <source src="musica/cancion.mp3" type="audio/mpeg">
+    <source src="musica/musica.mp3" type="audio/mpeg">
+    <source src="musica/fondo.m4a" type="audio/mp4">
+    <source src="musica/fondo.wav" type="audio/wav">
+  </audio>
+
+  <button class="musica" id="botonMusica" type="button" aria-label="Reproducir música" aria-pressed="false" title="Música">
+    <span class="nota" aria-hidden="true">♪</span>
+    <span class="eq" aria-hidden="true"><i></i><i></i><i></i></span>
+  </button>
+
+  <!-- ===== PORTADA ===== -->
+  <header class="portada">
+    <h1 class="solo-lectores">Una carta para Micaela</h1>
+    <div class="petalos" aria-hidden="true"></div>
+
+    <div class="portada-centro">
+      <button class="sobre" id="sobre" type="button" aria-expanded="false" aria-label="Abrir el sobre">
+        <span class="sobre-atras"></span>
+        <span class="carta">
+          <span class="carta-titulo">Una carta para ti</span>
+          <span class="carta-sub">En este Día del Amor</span>
+        </span>
+        <span class="sobre-frente">
+          <span class="sobre-para">Para Micaela</span>
+          <span class="sobre-fecha">21 de septiembre</span>
+        </span>
+        <span class="sobre-solapa"></span>
+        <span class="sello">M♡P</span>
+      </button>
+
+      <div class="portada-textos">
+        <p class="pista" id="pista">Toca el sobre para abrirlo</p>
+        <div class="portada-post" id="portadaPost">
+          <p class="portada-mensaje">Te quería decir todo lo que guardé en mi corazón</p>
+          <button class="boton" type="button" id="empezar">Empezar a leer</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ===== INTRO ===== -->
+    <section class="seccion" id="intro">
+      <div class="columna revelar">
+        <h2>Esto es para ti</h2>
+        <div class="carta-texto">
+          <p class="capitular">
+            No sé cómo empezar a escribir esto, porque las palabras nunca serán suficientes para expresar todo lo que siento por ti.
+            Pero aquí estoy, intentando en estas líneas lo que significa tenerte en mi vida, esta carta es un pequeño mapa
+            de nosotros: de cómo empezó, de cómo somos ahora, y de todo lo que quiero que sigamos siendo.
+            Si te preguntas por que hago esto cada vez de escirbir toda nuestra historia de nuevo, es para que sepas que siempre lo tengo en cuenta y tambien
+            quiero que tu lo tengas presente siempre tambien.
+          </p>
+          <p>
+            Cada día contigo es un regalo que no merezco, pero que agradezco infinitamente. Eres mi persona favorita, mi compañera,
+            mi sueño hecho realidad, el amor de mi vida . Y en este día especial del año, quería hacer algo así, para que quede registro de este momento,
+            de estos sentimientos que no quiero que se me olviden nunca, que siempre recuerdes y se queden en tu corazon esto que hago, es algo que me nace hacer
+            y siempre lo quisiera hacer, tal vez creas que esto es algo creado con IA o algo asi JAJA , pero no es asi amor, cada cosa que digo es salido de mi mente y escrito de mis dedos
+            no literal pero los botones de la computadora son mis dedos y mi mente es la que piensa lo que quiero decirte, y mi corazon es el que me dice que te amo y que quiero que seas feliz siempre.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CÓMO EMPEZÓ ===== -->
+    <section class="seccion">
+      <div class="columna revelar">
+        <h2>Cómo empezó</h2>
+
+        <div class="carta-texto">
+          <div class="capitulo">
+            <h3>Ese primer encuentro</h3>
+            <p>
+              Me acuerdo perfectamente del momento en que apareciste en mi vida. De los nervios, de la incertidumbre, de no saber
+              si sentirías lo mismo que yo. Tenía miedo del rechazo, miedo de que fueras una persona tan hermosa, tan especial,
+              que simplemente pasarías por mi vida sin dejarme ser parte de la tuya, pero gracias a ti por no dejarme nunca , por no 
+              dejarlo asi nada mas, solo gracias por eso y tambien por todo lo que me das cada dia, por tu amor, por tu cariño, por tu tiempo, por tu paciencia, por tu sonrisa, por tu mirada, por todo lo que eres y todo lo que me haces sentir. 
+            </p>
+          </div>
+
+          <div class="capitulo">
+            <h3>Todo cambió cuando...</h3>
+            <p>
+               Empezamos a hablar, y descubrí que eras aún mejor de lo que imaginaba. No solo hermosa por fuera,
+              sino hermosa por dentro. Con ese corazón puro, esa manera de ver el mundo, esa bondad que
+              tienes sin intentarlo. Cada conversación contigo se volvió una cosa que quiero siempre, que me hace reflexionar y me hace madurar. 
+              Cada mensaje tuyo era lo que esperaba y aun lo espero con ansias durante el día, sin saber de ti me vuelvo loco y me pone triste , mal no saberlo
+              pero gracias por decirme todo en tu dia a dia y quiero que tengas esa confianza en mi siempre, que sepas que puedes contar conmigo para todo, para lo bueno y para lo malo, para lo que sea, siempre estare ahi para ti,
+              siempre quedre tu bien y tu seguridad.
+            </p>
+          </div>
+
+          <div class="capitulo">
+            <h3>Y entonces, sin aviso previo...</h3>
+            <p>
+              Me enamoré. Profundamente y locamente . De una manera que no había experimentado antes. No fue un click, fue un proceso hermoso
+              de descubrimiento que aun seguimos teniendo, con problemas y todo pero seguimos juntos, de darme cuenta lentamente de que eras la persona que había estado buscando toda mi vida, sin
+              saber que te estaba buscando y tambien sin saber que lo necesitaba tanto. 
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== LÍNEA DE TIEMPO ===== -->
+    <section class="seccion banda">
+      <div class="ancho revelar">
+        <h2>Nuestra línea de tiempo</h2>
+
+        <div class="linea">
+          <article class="hito">
+            <div class="hito-tarjeta">
+              <h3>El primer encuentro</h3>
+              <p>Ese momento donde nuestros caminos se cruzaron. Donde todo comenzó. Donde fui lo suficientemente valiente para acercarme,
+              y donde tú tuviste la bondad de quedarte e invitarme a salir . Ese día quedó grabado en mi memoria para siempre.</p>
+              <p class="hito-fecha">Hace varios meses</p>
+            </div>
+          </article>
+
+          <article class="hito">
+            <div class="hito-tarjeta">
+              <h3>Nuestra primera cita</h3>
+              <p>Esa cita que se volvió especial. Donde mis nervios se transformaron en risas y hacer chistes , donde descubrimos que nos llevábamos
+              bien, donde simplemente disfrutamos de estar juntos. Fue el comienzo de algo nuevo.</p>
+              <p class="hito-fecha">Poco después del encuentro</p>
+            </div>
+          </article>
+
+          <article class="hito">
+            <div class="hito-tarjeta">
+              <h3>Las noches que no acababan</h3>
+              <p>Esas llamadas que extraño que se extendían hasta tarde. Donde hablábamos de todo y de nada. Donde me sentía completamente
+              cómodo siendo yo mismo. Donde descubrí que contigo me sentia comodo, que podría estar hablándote toda la vida.</p>
+              <p class="hito-fecha">Durante nuestras primeras semanas</p>
+            </div>
+          </article>
+
+          <article class="hito">
+            <div class="hito-tarjeta">
+              <h3>El momento en que supe</h3>
+              <p>El instante exacto donde me di cuenta de que esto era serio. Que no era pasajero. Que eras alguien en quien quería
+              invertir mi corazón completamente. Que quería construir algo contigo. Fue un momento de claridad absoluta, cuando le hable a mis papás de ti, en si a toda mi familia
+              es algo que sin pensarlo lo hice con mucho valor y siempre pensando que estariamos juntos, ahi me di cuenta que en verdad me enamore y haria lo que sea por ti. </p>
+              <p class="hito-fecha">Pasadas varias semanas juntos</p>
+            </div>
+          </article>
+
+          <article class="hito hito-hoy">
+            <div class="hito-tarjeta">
+              <h3>Hoy</h3>
+              <p>Aquí, en este momento, escribiendo esto. Amándote más de lo que creía posible, aunque tengamos discusiones , aunque te diga cosas hirientes y no lo hago por que te odie
+                pero hay cosas que no me gustan en tu actuar y como lo haces notar a los demas y eso en verdad duele, que hagas cosas que piensas que no son nada pero me afectan mucho,
+                como no saber de ti, como que estes mal de la nada, yo se que es estar asi, yo se como es esa situacion y no te quiero dejar sola, pero hacer cosas que me dejan mucho que pensar(apagar tu telefono o que esperes que se apague para no saber de ti) y simplemente pienso
+                que ya no te importo pero simpre esperanzado en un futuro junto a ti.</p>
+              <p class="hito-fecha">21 de septiembre, Día del Amor</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== GALERÍA (se llena sola con las fotos de la carpeta "fotos") ===== -->
+    <section class="seccion" id="seccion-galeria" hidden>
+      <div class="ancho revelar">
+        <h2>Nosotros, en fotos</h2>
+        <p class="bajada">Pequeños momentos que reflejan nuestros recuerdos favoritos</p>
+        <div class="polaroids" id="galeria-fotos"></div>
+      </div>
+    </section>
+
+    <!-- ===== POR QUÉ TÚ ===== -->
+    <section class="seccion banda">
+      <div class="ancho revelar">
+        <h2>Por qué tú</h2>
+        <p class="bajada">Algunas cosas que quiero que sepas</p>
+
+        <div class="razones">
+          <article class="razon">
+            <h3>Porque tu sonrisa</h3>
+            <p>Esa sonrisa tuya que me contagia siempre. Que me hace olvidar mis preocupaciones, mis problemas, que me haces feliz. Soy feliz simplemente viéndote sonreír.</p>
+          </article>
+
+          <article class="razon">
+            <h3>Porque tu bondad</h3>
+            <p>Te preocupas por las personas que quieres de una forma que no es fácil de encontrar. Esa compasión, esa empatía,
+            esa manera de ayudar sin esoerar nada. Me inspira a ser mejor.</p>
+          </article>
+
+          <article class="razon">
+            <h3>Por las conversaciones</h3>
+            <p>Porque con las cosas simples contigo, el tiempo se pasa volando. Podríamos hablar de cualquier cosa durante horas
+            y nunca me cansaría. Tú eres mi mejor compañía.</p>
+          </article>
+
+          <article class="razon">
+            <h3>Por tu apoyo</h3>
+            <p>Cuando tengo un mal día, sé que contártelo a ti ya lo hace más liviano o como se diria , se hace mas ligero ya que me desahogo contigo. Porque siempre me apoyas, siempre estás ahí,
+            siempre crees en mí cuando yo mismo no lo hago.</p>
+          </article>
+
+          <article class="razon">
+            <h3>Porque eres real</h3>
+            <p>No hay máscaras contigo. Puedo ser completamente yo mismo, sin filtros, sin miedo al rechazo. Aprecias mis defectos
+            como parte de lo que soy, y eso es invaluable, nadie se compara a ti amor.</p>
+          </article>
+
+          <article class="razon">
+            <h3>Porque me mejoras</h3>
+            <p>Contigo soy una mejor versión de mí mismo. Quiero ser mejor, quiero hacer mejor las cosas, quiero merecerte.
+            Eres mi inspiración diaria, pero quiero que seas igaul conmigp, me trates bien como siempre lo hiciste.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PEQUEÑOS MOMENTOS ===== -->
+    <section class="seccion">
+      <div class="ancho revelar">
+        <h2>Pequeños momentos</h2>
+        <p class="bajada">Toca cada tarjeta para descubrir lo que esconde</p>
+
+        <div class="tarjetas">
+          <div class="flip" role="button" tabindex="0" aria-pressed="false">
+            <div class="flip-inner">
+              <div class="cara cara-frente">
+                <div class="cara-icono" aria-hidden="true">🌷</div>
+                <h3>El primer encuentro</h3>
+              </div>
+              <div class="cara cara-atras">
+                <p>En el lugar que nos reunió, en un cine , una invitacion que nunca olvidaré.
+                Ese sitio quedará siempre grabado en mi corazón como el lugar donde todo cambió.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="flip" role="button" tabindex="0" aria-pressed="false">
+            <div class="flip-inner">
+              <div class="cara cara-frente">
+                <div class="cara-icono" aria-hidden="true">🌙</div>
+                <h3>Esa noche especial</h3>
+              </div>
+              <div class="cara cara-atras">
+                <p>Una conversación que no quería que terminara. Donde sentí que el tiempo se detenía.
+                Donde descubrí que eras exactamente lo que buscaba sin saberlo, esta parte la dedico a las noches que hablamos llorando y tratando de mejorar por los dos .</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="flip" role="button" tabindex="0" aria-pressed="false">
+            <div class="flip-inner">
+              <div class="cara cara-frente">
+                <div class="cara-icono" aria-hidden="true">✨</div>
+                <h3>Lo supe en ese momento</h3>
+              </div>
+              <div class="cara cara-atras">
+                <p>El día que te prometi que esto era serio. Que no quería perder eso.
+                Que eras la persona con la que quería construir un futuro, ya que no me importa nadie mas que tú MICAELA...</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="flip" role="button" tabindex="0" aria-pressed="false">
+            <div class="flip-inner">
+              <div class="cara cara-frente">
+                <div class="cara-icono" aria-hidden="true">💬</div>
+                <h3>Las noches contigo</h3>
+              </div>
+              <div class="cara cara-atras">
+                <p>Nuestras largas conversaciones nocturnas. Donde soy completamente sincero.
+                Donde solo existes tú y yo, sin el ruido del mundo exterior, aunque hablando bajito, siempre tratabamos de hablarnos.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="flip" role="button" tabindex="0" aria-pressed="false">
+            <div class="flip-inner">
+              <div class="cara cara-frente">
+                <div class="cara-icono" aria-hidden="true">🤍</div>
+                <h3>Nuestro presente</h3>
+              </div>
+              <div class="cara cara-atras">
+                <p>Aquí, ahora, en este momento. Construyendo día a día.
+                Amándonos de manera verdadera y con muchas razones para seguir juntos.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="flip" role="button" tabindex="0" aria-pressed="false">
+            <div class="flip-inner">
+              <div class="cara cara-frente">
+                <div class="cara-icono" aria-hidden="true">🌅</div>
+                <h3>El futuro que imagino</h3>
+              </div>
+              <div class="cara cara-atras">
+                <p>Un futuro contigo. Lleno de risas, de abrazos, de momentos simples que se vuelven especiales.
+                De crecer juntos, de envejecer juntos, de simplemente estar juntos, de ser felices...</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PROMESAS ===== -->
+    <section class="seccion">
+      <div class="ancho revelar">
+        <div class="promesas">
+          <h2>Mis promesas para ti</h2>
+          <ul class="promesas-lista">
+            <li>Estaré siempre para ti, en los buenos momentos y en los difíciles</li>
+            <li>Haré todo lo posible para ser la persona que mereces</li>
+            <li>Te escucharé de verdad, con mi corazón completo</li>
+            <li>Te apoyaré en tus sueños y te ayudaré a alcanzarlos</li>
+            <li>Cuidaré tu corazón como el tesoro más valioso</li>
+            <li>Que cambiare para ser mejor para nosotros</li>
+            <li>Que si tengo un problema o algo que decirte , te lo diré</li>
+            <li>Quiero ser esa persona que confies plenamnete y sinceramente sin que pienses que me enojare y te dejare, te prometo cambiar</li>
+            <li>Prometo vivir por ti y por las cosas que quiero hacer contigo</li>
+            <li>Siempre apoyarte y preocuparme en las buenas y en las malas</li>
+
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SORPRESA ===== -->
+    <section class="seccion">
+      <div class="columna revelar">
+        <h2>Algo especial solo para ti</h2>
+        <p class="bajada">Hay una sorpresa esperándote. Toca el corazón para descubrirla</p>
+
+        <div class="sorpresa" role="button" tabindex="0" aria-pressed="false">
+          <div class="sorpresa-inner">
+            <div class="cara cara-frente">
+              <div class="corazon" aria-hidden="true">❤️</div>
+              <p>Tócame</p>
+            </div>
+            <div class="cara cara-atras">
+              <p>
+                "Si aun estas aca significa que leíste cada palabra de esta carta.
+                Y eso ya me dice mucho de cómo eres conmigo aun. Gracias por este tiempo,
+                por tu amor, por ser tú. Te amo con todo mi corazón,
+                hoy y en todos los días normales que se vienen,
+                amor haremos las cosas bien y con amor, y siempre juntos, te amo Micaela."
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FINAL ===== -->
+    <section class="seccion">
+      <div class="columna revelar" style="max-width: 860px;">
+        <div class="final">
+          <h2>Te amo, Micaela</h2>
+          <hr class="sep">
+
+          <p>
+            Hoy, en este Día del Amor
+            quería dejar constancia de mis sentimientos, ya que siempre quiero que sepas lo que siento por ti, y que nunca lo olvides. Que siempre recuerdes que eres la persona más importante en mi vida, y que cada día contigo es un regalo que atesoro profundamente.
+          </p>
+          <p>
+            Quiero seguir construyendo , creciedno contigo, con calma, sin apuro, sumando momentos como
+            los de esta página. Momentos simples que se vuelven extraordinarios porque eres tú.
+          </p>
+          <p>
+            Gracias por elegirme. Gracias por tu amor, tu paciencia, tu generosidad infinita.
+            Eres el mejor regalo que la vida me ha dado, y prometo amarte cada día como mereces y a la vez perdon por mis errores y mis defectos, se que no soy perfecto
+            pero mi actuar siempre se tratara de ti, mis celos , mi cariño, tu seguridad, tu bienestar, TÚ.
+          </p>
+
+          <hr class="sep">
+          <div class="firma-linea">Con todo mi corazón,</div>
+          <div class="firma-nombre">Paulo ♡</div>
+          <p class="pie">
+            Hecho con tiempo, amor y dedicación<br>
+            para la persona más especial del mundo
+          </p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <div class="espacio-final" aria-hidden="true"></div>
+
+  <!-- Visor de fotos -->
+  <div class="visor" id="visor" hidden role="dialog" aria-modal="true" aria-label="Foto ampliada">
+    <img alt="">
+    <button type="button" aria-label="Cerrar">×</button>
+  </div>
+
+  <script>
+    (function () {
+      'use strict';
+
+      const $ = (s, r) => (r || document).querySelector(s);
+      const reducido = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      /* ===== PÉTALOS ===== */
+      const contenedorPetalos = $('.petalos');
+      if (!reducido) {
+        for (let i = 0; i < 16; i++) {
+          const p = document.createElement('span');
+          p.className = 'petalo';
+          const tam = 10 + Math.random() * 14;
+          p.style.cssText =
+            'left:' + (Math.random() * 100).toFixed(1) + '%;' +
+            '--s:' + tam.toFixed(1) + 'px;' +
+            '--x:' + (Math.random() * 160 - 80).toFixed(0) + 'px;' +
+            '--d:' + (14 + Math.random() * 12).toFixed(1) + 's;' +
+            'animation-delay:-' + (Math.random() * 24).toFixed(1) + 's;';
+          contenedorPetalos.appendChild(p);
+        }
+      }
+
+      /* ===== MELODÍA INCLUIDA (caja de música generada por el navegador) ===== */
+      function crearSintetizador() {
+        const AC = window.AudioContext || window.webkitAudioContext;
+        const PASO = 0.4;              // segundos por nota del arpegio
+        const PATRON = [0, 1, 2, 3, 2, 1, 2, 1];
+        // Do - Sol - La menor - Fa - Do - Sol - Fa - Do
+        const ACORDES = [
+          { bajo: 48, notas: [60, 64, 67, 72], melodia: [[0, 76], [4, 79], [6, 76]] },
+          { bajo: 43, notas: [59, 62, 67, 71], melodia: [[0, 74], [4, 71], [6, 74]] },
+          { bajo: 45, notas: [57, 60, 64, 69], melodia: [[0, 72], [4, 76], [6, 79]] },
+          { bajo: 41, notas: [57, 60, 65, 69], melodia: [[0, 77], [4, 72], [6, 69]] },
+          { bajo: 48, notas: [60, 64, 67, 72], melodia: [[0, 79], [4, 84], [6, 79]] },
+          { bajo: 43, notas: [59, 62, 67, 71], melodia: [[0, 79], [4, 74], [6, 71]] },
+          { bajo: 41, notas: [57, 60, 65, 69], melodia: [[0, 77], [4, 81], [6, 77]] },
+          { bajo: 48, notas: [60, 64, 67, 72], melodia: [[0, 76], [4, 72]] }
+        ];
+
+        let ctx = null, master = null, entrada = null;
+        let timer = null, paso = 0, proxima = 0;
+
+        function preparar() {
+          if (!AC) return null;
+          if (!ctx) {
+            ctx = new AC();
+            master = ctx.createGain();
+            master.gain.value = 0;
+            entrada = ctx.createGain();
+            const filtro = ctx.createBiquadFilter();
+            filtro.type = 'lowpass';
+            filtro.frequency.value = 3800;
+            const retardo = ctx.createDelay(1.5);
+            retardo.delayTime.value = 0.6;
+            const realim = ctx.createGain();
+            realim.gain.value = 0.35;
+            const humedo = ctx.createGain();
+            humedo.gain.value = 0.35;
+            entrada.connect(filtro);
+            filtro.connect(master);
+            filtro.connect(retardo);
+            retardo.connect(realim);
+            realim.connect(retardo);
+            retardo.connect(humedo);
+            humedo.connect(master);
+            master.connect(ctx.destination);
+          }
+          if (ctx.state === 'suspended') ctx.resume();
+          return ctx;
+        }
+
+        function nota(midi, t, dur, vol, tipo) {
+          const f = 440 * Math.pow(2, (midi - 69) / 12);
+          const g = ctx.createGain();
+          g.gain.setValueAtTime(0.0001, t);
+          g.gain.linearRampToValueAtTime(vol, t + 0.012);
+          g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+          g.connect(entrada);
+          const o = ctx.createOscillator();
+          o.type = tipo;
+          o.frequency.value = f;
+          o.connect(g);
+          o.start(t);
+          o.stop(t + dur + 0.05);
+          if (tipo !== 'sine' || vol < 0.05) return;
+          const brillo = ctx.createOscillator();
+          const gb = ctx.createGain();
+          brillo.type = 'sine';
+          brillo.frequency.value = f * 2;
+          gb.gain.setValueAtTime(0.0001, t);
+          gb.gain.linearRampToValueAtTime(vol * 0.25, t + 0.01);
+          gb.gain.exponentialRampToValueAtTime(0.0001, t + dur * 0.5);
+          brillo.connect(gb);
+          gb.connect(entrada);
+          brillo.start(t);
+          brillo.stop(t + dur * 0.5 + 0.05);
+        }
+
+        function tocarPaso(p, t) {
+          const ac = ACORDES[Math.floor(p / 8)];
+          const s = p % 8;
+          nota(ac.notas[PATRON[s]], t, 1.6, 0.055, 'sine');
+          if (s === 0) nota(ac.bajo, t, 3.0, 0.09, 'sine');
+          if (s === 4) nota(ac.bajo + 12, t, 1.6, 0.04, 'sine');
+          ac.melodia.forEach(function (m) {
+            if (m[0] === s) nota(m[1], t, 2.2, 0.07, 'triangle');
+          });
+        }
+
+        function programar() {
+          while (proxima < ctx.currentTime + 1.5) {
+            tocarPaso(paso, proxima);
+            proxima += PASO;
+            paso = (paso + 1) % (ACORDES.length * 8);
+          }
+        }
+
+        function rampa(valor, seg) {
+          const t = ctx.currentTime;
+          master.gain.cancelScheduledValues(t);
+          master.gain.setValueAtTime(master.gain.value, t);
+          master.gain.linearRampToValueAtTime(valor, t + seg);
+        }
+
+        return {
+          disponible: !!AC,
+          preparar: preparar,
+          iniciar: function (conFade) {
+            if (!preparar()) return false;
+            rampa(0.8, conFade ? 3 : 0.6);
+            proxima = ctx.currentTime + 0.15;
+            clearInterval(timer);
+            programar();
+            timer = setInterval(programar, 200);
+            return true;
+          },
+          pausar: function () {
+            if (!ctx) return;
+            rampa(0, 0.5);
+            clearInterval(timer);
+          }
+        };
+      }
+
+      /* ===== MÚSICA =====
+         Si existe musica/fondo.mp3 (o cancion.mp3, musica.mp3, fondo.m4a, fondo.wav) se usa esa canción.
+         Si no, suena la melodía incluida arriba. */
+      const audio = $('#musicaFondo');
+      const botonMusica = $('#botonMusica');
+      const sinte = crearSintetizador();
+      let modo = 'archivo';          // 'archivo' o 'sintetica'
+      let quiereSonar = false;
+      let sonando = false;
+      let temporizadorFade;
+
+      function marcarEstado(s) {
+        sonando = s;
+        botonMusica.classList.toggle('sonando', s);
+        botonMusica.setAttribute('aria-pressed', String(s));
+        botonMusica.setAttribute('aria-label', s ? 'Pausar música' : 'Reproducir música');
+      }
+
+      function fadeVolumen(objetivo, ms) {
+        clearInterval(temporizadorFade);
+        const inicio = audio.volume;
+        const pasos = Math.max(1, Math.round(ms / 80));
+        let n = 0;
+        temporizadorFade = setInterval(function () {
+          n++;
+          audio.volume = Math.min(1, Math.max(0, inicio + (objetivo - inicio) * n / pasos));
+          if (n >= pasos) clearInterval(temporizadorFade);
+        }, 80);
+      }
+
+      function usarSintetica() {
+        if (modo === 'sintetica') return;
+        if (!sinte.disponible) { botonMusica.hidden = true; return; }
+        modo = 'sintetica';
+        if (quiereSonar && sinte.iniciar(true)) marcarEstado(true);
+      }
+
+      function reproducir(conFade) {
+        quiereSonar = true;
+        sinte.preparar();            // se prepara dentro del toque de la persona
+        if (modo === 'sintetica') {
+          if (sinte.iniciar(conFade)) marcarEstado(true);
+          return;
+        }
+        audio.volume = conFade ? 0 : 0.55;
+        const promesa = audio.play();
+        if (promesa && promesa.then) {
+          promesa.then(function () { if (conFade) fadeVolumen(0.55, 3000); })
+                 .catch(function (e) { if (e && e.name === 'NotSupportedError') usarSintetica(); });
+        }
+      }
+
+      function pausar() {
+        quiereSonar = false;
+        if (modo === 'sintetica') { sinte.pausar(); marcarEstado(false); }
+        else audio.pause();
+      }
+
+      const fuentes = audio.querySelectorAll('source');
+      fuentes[fuentes.length - 1].addEventListener('error', usarSintetica);
+      audio.addEventListener('error', usarSintetica);
+      audio.addEventListener('play', function () { if (modo === 'archivo') marcarEstado(true); });
+      audio.addEventListener('pause', function () { if (modo === 'archivo') marcarEstado(false); });
+
+      botonMusica.addEventListener('click', function () {
+        if (sonando) pausar(); else reproducir(false);
+      });
+
+      /* ===== SOBRE ===== */
+      const sobre = $('#sobre');
+      const pista = $('#pista');
+      const post = $('#portadaPost');
+
+      sobre.addEventListener('click', function () {
+        sobre.classList.add('abierto');
+        sobre.setAttribute('aria-expanded', 'true');
+        sobre.tabIndex = -1;
+        pista.classList.add('oculta');
+        reproducir(true);
+        setTimeout(function () { post.classList.add('visible'); }, reducido ? 0 : 1500);
+      }, { once: true });
+
+      $('#empezar').addEventListener('click', function () {
+        $('#intro').scrollIntoView({ behavior: reducido ? 'auto' : 'smooth', block: 'start' });
+      });
+
+      /* ===== TARJETAS QUE SE VOLTEAN ===== */
+      document.querySelectorAll('.flip, .sorpresa').forEach(function (el) {
+        const clase = el.classList.contains('sorpresa') ? 'abierta' : 'activa';
+        el.addEventListener('click', function () {
+          el.setAttribute('aria-pressed', String(el.classList.toggle(clase)));
+        });
+        el.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); el.click(); }
+        });
+      });
+
+      /* ===== APARICIÓN AL HACER SCROLL ===== */
+      const revelables = document.querySelectorAll('.revelar');
+      if ('IntersectionObserver' in window) {
+        const io = new IntersectionObserver(function (entradas) {
+          entradas.forEach(function (e) {
+            if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+          });
+        }, { threshold: 0.08, rootMargin: '0px 0px -6% 0px' });
+        revelables.forEach(function (el) { io.observe(el); });
+      } else {
+        revelables.forEach(function (el) { el.classList.add('visible'); });
+      }
+
+      /* ===== VISOR DE FOTOS ===== */
+      const visor = $('#visor');
+      const visorImg = $('img', visor);
+
+      function abrirVisor(src, alt) {
+        visorImg.src = src;
+        visorImg.alt = alt;
+        visor.hidden = false;
+        document.body.style.overflow = 'hidden';
+        $('button', visor).focus();
+      }
+
+      function cerrarVisor() {
+        visor.hidden = true;
+        visorImg.removeAttribute('src');
+        document.body.style.overflow = '';
+      }
+
+      visor.addEventListener('click', cerrarVisor);
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && !visor.hidden) cerrarVisor();
+      });
+
+      /* ===== GALERÍA AUTOMÁTICA =====
+         Busca fotos/foto1.jpg, fotos/foto2.jpg ... hasta foto12 (jpg, jpeg, png o webp).
+         Si no hay ninguna, la sección completa se mantiene oculta.
+         Opcional: usa nombres propios, por ejemplo NOMBRES = ['primera-cita.jpg', 'paseo.jpg'];
+         Opcional: textos bajo cada foto, por ejemplo LEYENDAS[0] = 'Nuestra primera cita'; */
+      const NOMBRES = [];
+      const LEYENDAS = [];
+      const MAX_FOTOS = 12;
+      const EXTENSIONES = ['jpg', 'jpeg', 'png', 'webp', 'JPG', 'JPEG', 'PNG'];
+
+      const total = NOMBRES.length || MAX_FOTOS;
+      const encontradas = new Array(total).fill(null);
+      let pendientes = total;
+
+      function candidatos(i) {
+        if (NOMBRES.length) return ['fotos/' + NOMBRES[i]];
+        return EXTENSIONES.map(function (ext) { return 'fotos/foto' + (i + 1) + '.' + ext; });
+      }
+
+      function terminarUna() {
+        pendientes--;
+        if (pendientes > 0) return;
+        if (!encontradas.some(Boolean)) return;
+
+        const contenedor = $('#galeria-fotos');
+        encontradas.forEach(function (img, i) {
+          if (!img) return;
+          const fig = document.createElement('figure');
+          fig.className = 'polaroid';
+          fig.tabIndex = 0;
+          fig.setAttribute('role', 'button');
+          fig.setAttribute('aria-label', 'Ver la foto ' + (i + 1) + ' más grande');
+          img.alt = 'Foto ' + (i + 1) + ' de nosotros';
+          fig.appendChild(img);
+          const cap = document.createElement('figcaption');
+          cap.textContent = LEYENDAS[i] || '';
+          fig.appendChild(cap);
+          fig.addEventListener('click', function () { abrirVisor(img.src, img.alt); });
+          fig.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); fig.click(); }
+          });
+          contenedor.appendChild(fig);
+        });
+        $('#seccion-galeria').hidden = false;
+      }
+
+      function buscar(i, lista, k) {
+        if (k >= lista.length) { terminarUna(); return; }
+        const img = new Image();
+        img.decoding = 'async';
+        img.onload = function () { encontradas[i] = img; terminarUna(); };
+        img.onerror = function () { buscar(i, lista, k + 1); };
+        img.src = lista[k];
+      }
+
+      for (let i = 0; i < total; i++) buscar(i, candidatos(i), 0);
+    })();
+  </script>
+
+</body>
+</html>
